@@ -48,7 +48,6 @@ This software is provided **“AS IS”**, **without warranty of any kind**, exp
 # Clone or copy the script into your PATH
 git clone https://github.com/Pryodon/Web-Spider-Linux-shell-script.git
 cd Web-Spider-Linux-shell-script
-mv webspider.sh webspider
 chmod +x webspider
 # optional: symlink as 'spider'
 ln -s "$PWD/webspider" ~/bin/spider
