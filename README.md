@@ -39,10 +39,13 @@ You can aim it at videos, audio, images, pages, **or everything**, and optionall
 # Clone or copy the script into your PATH
 git clone https://github.com/Pryodon/Web-Spider-Linux-shell-script.git
 cd Web-Spider-Linux-shell-script
+mv webspider.sh webspider
 chmod +x webspider
 # optional: symlink as 'spider'
 ln -s "$PWD/webspider" ~/bin/spider
 ```
+Put this script in your PATH for ease of use!<br/>
+(e.g. put it in `~/bin` and have `~/bin` in your PATH.)
 
 ## Quick Start
 ```
@@ -64,6 +67,8 @@ webspider seeds.txt
   - `log` — verbose `wget` crawl log
 
 By default the spider **respects robots**, stays on your domains, and returns **video files** only.
+
+**Try this [Google search](https://www.mynetblog.com/movies/00_How_to_find_media_files_with_Google_and_VLC_media_player_4K_uhd_2160p_hevc_x265_1080p_x264.mp4.mkv/) to find huge amounts of media files to download**
 
 ## Usage
 ```
