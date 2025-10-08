@@ -3,6 +3,9 @@
 #
 # !!! This script requires the program wget !!!
 #
+# Extensive help is here:
+# https://github.com/Pryodon/Web-Spider-Linux-shell-script/
+#
 # Usage:
 #   webspider [--http|--https]
 #             [--video|--audio|--images|--pages|--files|--all]
@@ -12,7 +15,7 @@
 #             <links.txt | URL...>
 #
 # Modes (choose one; default is --video):
-#   --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts)
+#   --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts)
 #   --audio    : audio files only (mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff)
 #   --images   : image files only (jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif)
 #   --pages    : directories (â€¦/) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
@@ -62,7 +65,7 @@ Usage:
         <links.txt | URL...>
 
 Modes (default: --video):
-  --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts)
+  --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts)
   --audio    : audio files only (mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff)
   --images   : image files only (jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif)
   --pages    : directories (â€¦/) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
@@ -128,7 +131,7 @@ fi
 # Defaults per mode (unless --ext provided)
 if [[ -z "$EXT_PATTERN" ]]; then
   case "$MODE" in
-    video)  EXT_PATTERN='mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts' ;;
+    video)  EXT_PATTERN='mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts' ;;
     audio)  EXT_PATTERN='mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff' ;;
     images) EXT_PATTERN='jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif' ;;
     pages)  EXT_PATTERN='html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown' ;;
