@@ -26,14 +26,21 @@ The cool thing about this script is that you can edit the list of scraped URLs b
 - **Robust log parsing** — handles both `URL: http://…` and `URL:http://…`.
 - **Single-dash synonyms** — `-video`, `-images`, `-all`, `-ext`, `-delay`, etc.
 
----
-
 ## Requirements
 
 - Bash (arrays & `set -euo pipefail` support; Bash 4+ recommended)
 - `wget`, `awk`, `sed`, `grep`, `sort`, `mktemp`, `paste` (standard GNU userland)
 
----
+
+## License
+
+This project is dedicated to the public domain via **CC0 1.0 Universal**  
+SPDX: `CC0-1.0` (see `LICENSE`)
+
+### Warranty Disclaimer
+
+This software is provided **“AS IS”**, **without warranty of any kind**, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
 
 ## Installation
 
