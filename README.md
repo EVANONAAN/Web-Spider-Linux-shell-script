@@ -5,6 +5,8 @@ It takes one or more **start targets** (URLs, hostnames, IPv4/IPv6 — with opti
 
 You can aim it at videos, audio, images, pages, **or everything**, and optionally emit a `sitemap.txt` and/or `sitemap.xml`.
 
+The cool thing about this script is that you can edit the list of scraped URLs before you download them with `wget`.
+
 ---
 
 ## Features
