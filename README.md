@@ -214,7 +214,7 @@ generate_seeds | xargs -r -n100 webspider --video --delay 0.8
   Always bracket: `https://[2001:db8::1]/`. The script helps, but explicit is best.
 
 - **Off-site crawl**<br/>
-  The allowlist comes from your seeds. If you seed `example.com`, it also allows `www.example.com`. (auto-adds www. variant for bare domains, however there is a bug with this as it only lists the root page on the www. domain.)<br/>
+  The allowlist comes from your seeds. If you seed `example.com`, it also allows `www.example.com`. (auto-adds `www.` variant for bare domains, however there is a bug with this as it only lists the root page on the `www.` domain.)<br/>
   If you see off-site URLs, confirm they truly share the same registrable domain, or seed more specifically (e.g., `sub.example.com/`).
 
 <hr>
