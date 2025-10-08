@@ -68,7 +68,7 @@ Modes (default: --video):
   --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts)
   --audio    : audio files only (mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff)
   --images   : image files only (jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif)
-  --pages    : directories (â€¦/) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
+  --pages    : directories (.../) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
   --files    : all files (exclude directories and .html/.htm pages)
   --all      : everything (dirs + pages + files)
 
