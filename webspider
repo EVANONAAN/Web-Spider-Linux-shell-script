@@ -2,6 +2,7 @@
 # Spider start URLs/domains/IPs and produce a unique URL list.
 #
 # !!! This script requires the program wget !!!
+# $ sudo apt install wget
 #
 # Usage:
 #   webspider [--http|--https]
@@ -51,7 +52,9 @@ OUTPUT_URLS="urls"
 
 usage() {
   cat <<EOF
- !!! This script requires the program wget !!!
+
+!!! This script requires the program wget !!!
+ $ sudo apt install wget
 
 Usage:
   $PROG [--http|--https]
