@@ -4,6 +4,16 @@
 # !!! This script requires the program wget !!!
 # $ sudo apt install wget
 #
+#
+# SPDX-License-Identifier: CC0-1.0
+# NO WARRANTY: This software is provided "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# express or implied, including but not limited to the warranties of
+# merchantability, fitness for a particular purpose and noninfringement.
+# In no event shall the authors be liable for any claim, damages or other
+# liability, whether in an action of contract, tort or otherwise, arising from,
+# out of or in connection with the software or the use or other dealings in the software.
+#
+#
 # Usage:
 #   webspider [--http|--https]
 #             [--video|--audio|--images|--pages|--files|--all]
