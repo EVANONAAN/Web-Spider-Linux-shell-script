@@ -1,24 +1,7 @@
 #!/usr/bin/env bash
-#
-# Spider start URLs/domains/IPs and produce a unique URL list that you can then feed to 
-# wget for easy downloading.
+# Spider start URLs/domains/IPs and produce a unique URL list.
 #
 # !!! This script requires the program wget !!!
-# $ sudo apt install wget
-#
-# SPDX-License-Identifier: CC0-1.0
-# NO WARRANTY: This software is provided "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# express or implied, including but not limited to the warranties of
-# merchantability, fitness for a particular purpose and noninfringement.
-# In no event shall the authors be liable for any claim, damages or other
-# liability, whether in an action of contract, tort or otherwise, arising from,
-# out of or in connection with the software or the use or other dealings in the software.
-#
-# View the full public domain CC0-1.0 license for this script here:
-# https://github.com/Pryodon/Web-Spider-Linux-shell-script/blob/main/LICENSE.md
-#
-# Extensive help is here:
-# https://github.com/Pryodon/Web-Spider-Linux-shell-script/
 #
 # Usage:
 #   webspider [--http|--https]
@@ -29,10 +12,10 @@
 #             <links.txt | URL...>
 #
 # Modes (choose one; default is --video):
-#   --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts)
+#   --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts)
 #   --audio    : audio files only (mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff)
 #   --images   : image files only (jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif)
-#   --pages    : directories (.../) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
+#   --pages    : directories (…/) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
 #   --files    : all files (exclude directories and .html/.htm pages)
 #   --all      : everything (dirs + pages + files)
 #
@@ -79,10 +62,10 @@ Usage:
         <links.txt | URL...>
 
 Modes (default: --video):
-  --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts)
+  --video    : video files only (mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts)
   --audio    : audio files only (mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff)
   --images   : image files only (jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif)
-  --pages    : directories (.../) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
+  --pages    : directories (…/) + page-like extensions (html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown)
   --files    : all files (exclude directories and .html/.htm pages)
   --all      : everything (dirs + pages + files)
 
@@ -145,7 +128,7 @@ fi
 # Defaults per mode (unless --ext provided)
 if [[ -z "$EXT_PATTERN" ]]; then
   case "$MODE" in
-    video)  EXT_PATTERN='mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts' ;;
+    video)  EXT_PATTERN='mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts' ;;
     audio)  EXT_PATTERN='mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff' ;;
     images) EXT_PATTERN='jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif' ;;
     pages)  EXT_PATTERN='html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown' ;;
@@ -229,9 +212,9 @@ if echo "${HOSTS}" | grep -q ':'; then USE_DOMAINS=0; fi
 
 # --- Build wget command as an array ---
 WGET_CMD=( wget --spider --recursive --no-parent --level=inf
-           --no-directories --no-host-directories
-           --wait="${DELAY}" --random-wait
-           --no-verbose --output-file="${LOG_FILE}" )
+ --no-directories --no-host-directories
+ --wait="${DELAY}" --random-wait
+ --no-verbose --output-file="${LOG_FILE}" )
 
 # Respect robots by default; optionally ignore
 if [[ "${NO_ROBOTS}" -eq 1 ]]; then
@@ -256,10 +239,7 @@ echo "[*] Starting spider..."
 [[ ${USE_DOMAINS} -eq 1 ]] && echo "[*] Domains allowlist: $(echo "${HOSTS}" | paste -sd, -)"
 echo "[*] Logging to: ${LOG_FILE}"
 
-# Run wget
-# Show the exact wget command (nice for debugging)
-echo "[*] Wget command:"
-printf '    %q ' "${WGET_CMD[@]}"; echo
+{ echo "[*] Wget command:"; printf ' %q' "${WGET_CMD[@]}"; echo; } | tee -a "${LOG_FILE}"
 
 # With `set -e`, wrap the command in an `if ! …; then` test so the shell doesn’t exit.
 if ! "${WGET_CMD[@]}"; then
