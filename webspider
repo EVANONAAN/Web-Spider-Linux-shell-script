@@ -242,7 +242,7 @@ echo "[*] Logging to: ${LOG_FILE}"
 # Show the exact wget command (nice for debugging)
 { echo "[*] Wget command:"; printf ' %q' "${WGET_CMD[@]}"; echo; } | tee -a "${LOG_FILE}"
 
-# With `set -e`, wrap the command in an `if ! …; then` test so the shell doesn’t exit.
+# With `set -e`, wrap the command in an `if ! ...; then` test so the shell doesn’t exit.
 if ! "${WGET_CMD[@]}"; then
   rc=$?
   case "$rc" in
