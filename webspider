@@ -257,7 +257,34 @@ echo "[*] Starting spider..."
 echo "[*] Logging to: ${LOG_FILE}"
 
 # Run wget
-"${WGET_CMD[@]}"
+# Show the exact wget command (nice for debugging)
+echo "[*] Wget command:"
+printf '    %q ' "${WGET_CMD[@]}"; echo
+
+# With `set -e`, wrap the command in an `if ! …; then` test so the shell doesn’t exit.
+if ! "${WGET_CMD[@]}"; then
+  rc=$?
+  case "$rc" in
+    0)
+      : ;;  # success
+    8)
+      echo "[!] wget exit 8: server error(s) encountered (e.g., 404/5xx)."
+      echo "    This usually just means broken links were found; continuing."
+      ;;
+    4)
+      echo "[!] wget exit 4: network failure. Consider retrying or increasing --delay." >&2
+      exit "$rc"
+      ;;
+    5)
+      echo "[!] wget exit 5: SSL verification failure. Check certs or use http/--no-check-certificate." >&2
+      exit "$rc"
+      ;;
+    *)
+      echo "[ERROR] wget exited with code $rc; aborting." >&2
+      exit "$rc"
+      ;;
+  esac
+fi
 
 echo "[*] Extracting URLs from log..."
 
