@@ -239,6 +239,7 @@ echo "[*] Starting spider..."
 [[ ${USE_DOMAINS} -eq 1 ]] && echo "[*] Domains allowlist: $(echo "${HOSTS}" | paste -sd, -)"
 echo "[*] Logging to: ${LOG_FILE}"
 
+# Show the exact wget command (nice for debugging)
 { echo "[*] Wget command:"; printf ' %q' "${WGET_CMD[@]}"; echo; } | tee -a "${LOG_FILE}"
 
 # With `set -e`, wrap the command in an `if ! …; then` test so the shell doesn’t exit.
